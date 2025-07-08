@@ -73,51 +73,200 @@ showSlide(current);
 
 
 
-   const steps = [
+ document.addEventListener("DOMContentLoaded", () => {
+  // ------------------- Step Section ------------------- //
+  const steps = [
     {
       number: "Step 01",
       title: "Design Creation",
-      video: "video1.mp4",
-      desc: "Our master designers craft a digital or hand-drawn concept, forming the base of each masterpiece. Every detail is precision-engineered."
+      video: "videos/design-creation.mp4",
+      desc: "Our master designers craft a digital or hand-drawn concept, forming the base of each masterpiece."
     },
     {
       number: "Step 02",
       title: "Pre Casting",
-      video: "video2.mp4",
-      desc: "A wax model mirrors the design and is encased in a mould. The wax burns out, leaving a cavity for metal, while sprues ensure flow."
+      video: "videos/pre-casting.mp4",
+      desc: "A wax model mirrors the design and is encased in a mould. The wax burns out, leaving a cavity for metal."
     },
     {
       number: "Step 03",
       title: "Casting",
-      video: "video3.mp4",
-      desc: "Gold, platinum, or silver is melted in a furnace and poured into a mould. After cooling, the mould is broken, revealing a raw metal piece."
+      video: "videos/casting.mp4",
+      desc: "Gold or silver is melted and poured into a mould. After cooling, the mould is broken to reveal the shape."
     },
     {
       number: "Step 04",
       title: "Stone Setting",
-      video: "video4.mp4",
-      desc: "Skilled artisans meticulously set each diamond or gemstone by hand, ensuring symmetry, brilliance, and strong hold."
+      video: "videos/stone-setting.mp4",
+      desc: "Artisans hand-place each diamond or stone with precision, ensuring symmetry and secure settings."
     },
     {
       number: "Step 05",
       title: "Polishing & Finishing",
-      video: "video5.mp4",
-      desc: "The final masterpiece is polished, buffed, and finished to ensure a flawless shine and smooth surface — ready to dazzle."
+      video: "videos/polishing.mp4",
+      desc: "Final polishing and finishing are done to give the jewelry its signature sparkle and smooth finish."
     }
   ];
 
-  function showStep(index) {
-    document.getElementById("step-number").textContent = steps[index].number;
-    document.getElementById("step-title").textContent = steps[index].title;
-    document.getElementById("step-description").textContent = steps[index].desc;
+  const video = document.getElementById('processVideo');
+  const stepNumber = document.getElementById('stepNumber');
+  const stepTitle = document.getElementById('stepTitle');
+  const stepDesc = document.getElementById('stepDesc');
+  const dots = document.querySelectorAll('.dot');
 
-    const videoElement = document.getElementById("step-video");
-    videoElement.src = steps[index].video;
-    videoElement.load();
-    videoElement.play();
+  function updateStep(index) {
+    const step = steps[index];
+    if (video) video.src = step.video;
+    if (stepNumber) stepNumber.textContent = step.number;
+    if (stepTitle) stepTitle.textContent = step.title;
+    if (stepDesc) stepDesc.textContent = step.desc;
 
-    // Highlight active dot
-    document.querySelectorAll(".dot").forEach((dot, i) => {
-      dot.classList.toggle("active", i === index);
+    dots.forEach(dot => dot.classList.remove('active'));
+    if (dots[index]) dots[index].classList.add('active');
+  }
+
+  if (dots.length > 0) {
+    updateStep(0); // Initial
+
+    dots.forEach(dot => {
+      dot.addEventListener('click', () => {
+        const index = parseInt(dot.getAttribute('data-step'));
+        updateStep(index);
+      });
     });
   }
+
+  // ------------------- Infrastructure Carousel Section ------------------- //
+  const carousel = document.getElementById("carousel");
+  const slides = document.querySelectorAll(".slide");
+  const totalSlides = slides.length;
+  const slidesPerPage = 3;
+  let index = 0;
+  let autoSlideInterval;
+
+  function showSlide(i) {
+    index = (i + totalSlides) % totalSlides;
+    const shift = index * (100 / slidesPerPage);
+    carousel.style.transform = `translateX(-${shift}%)`;
+  }
+
+  function nextSlide() {
+    if (index + slidesPerPage < totalSlides) {
+      index++;
+    } else {
+      index = 0;
+    }
+    showSlide(index);
+  }
+
+  function prevSlide() {
+    if (index > 0) {
+      index--;
+    } else {
+      index = totalSlides - slidesPerPage;
+    }
+    showSlide(index);
+  }
+
+  function startAutoSlide() {
+    autoSlideInterval = setInterval(nextSlide, 4000);
+  }
+
+  function stopAutoSlide() {
+    clearInterval(autoSlideInterval);
+  }
+
+  // Setup
+  showSlide(0);
+  startAutoSlide();
+
+  document.getElementById("prevBtn").addEventListener("click", () => {
+    stopAutoSlide();
+    prevSlide();
+  });
+
+  document.getElementById("nextBtn").addEventListener("click", () => {
+    stopAutoSlide();
+    nextSlide();
+  });
+
+  document.querySelector(".carousel-container").addEventListener("mouseenter", stopAutoSlide);
+  document.querySelector(".carousel-container").addEventListener("mouseleave", startAutoSlide);
+
+  // ------------------- Diamond Quality Accordion Section ------------------- //
+  const accordionItems = document.querySelectorAll('.accordion-item');
+  
+  accordionItems.forEach(item => {
+    const header = item.querySelector('.accordion-header');
+    
+    header.addEventListener('click', () => {
+      const isActive = item.classList.contains('active');
+      
+      // Close all accordion items
+      accordionItems.forEach(otherItem => {
+        otherItem.classList.remove('active');
+        const icon = otherItem.querySelector('.icon');
+        icon.textContent = '+';
+      });
+      
+      // If the clicked item wasn't active, open it
+      if (!isActive) {
+        item.classList.add('active');
+        const icon = item.querySelector('.icon');
+        icon.textContent = '×';
+      }
+    });
+  });
+  
+  // ------------------- Testimonials Section ------------------- //
+  // Static testimonials layout - no slider functionality needed
+  // The testimonials section now displays a fixed layout with 
+  // left and right client images with play buttons, and center text content
+  
+  // Add click handlers for play buttons if needed
+  const playButtons = document.querySelectorAll('.play-button');
+  playButtons.forEach(button => {
+    button.addEventListener('click', function() {
+      // Handle video play functionality here
+      console.log('Play button clicked');
+    });
+  });
+  
+  // ------------------- Testimonial Modal ------------------- //
+  const modal = document.getElementById('testimonialModal');
+  const readMoreBtn = document.querySelector('.read-more');
+  const closeBtn = document.querySelector('.close-btn');
+  
+  // Open modal when "Read More" is clicked
+  if (readMoreBtn) {
+    readMoreBtn.addEventListener('click', function(e) {
+      e.preventDefault();
+      modal.style.display = 'block';
+      document.body.style.overflow = 'hidden'; // Prevent background scrolling
+    });
+  }
+  
+  // Close modal when close button is clicked
+  if (closeBtn) {
+    closeBtn.addEventListener('click', function() {
+      modal.style.display = 'none';
+      document.body.style.overflow = 'auto'; // Restore scrolling
+    });
+  }
+  
+  // Close modal when clicking outside the modal content
+  window.addEventListener('click', function(e) {
+    if (e.target === modal) {
+      modal.style.display = 'none';
+      document.body.style.overflow = 'auto'; // Restore scrolling
+    }
+  });
+  
+  // Close modal with Escape key
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && modal.style.display === 'block') {
+      modal.style.display = 'none';
+      document.body.style.overflow = 'auto'; // Restore scrolling
+    }
+  });
+});
