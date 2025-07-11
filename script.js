@@ -63,8 +63,59 @@ window.addEventListener("scroll", () => {
   const navbar = document.getElementById("navbar");
   if (window.scrollY > 50) {
     navbar.classList.add("scrolled");
+    // Close mobile menu when scrolling
+    const navLinks = document.querySelector(".nav-links");
+    const hamburgerMenu = document.getElementById("hamburger-menu");
+    if (navLinks && hamburgerMenu) {
+      navLinks.classList.remove("mobile-menu-open");
+      hamburgerMenu.classList.remove("active");
+    }
   } else {
     navbar.classList.remove("scrolled");
+  }
+});
+
+// Mobile Hamburger Menu Functionality
+document.addEventListener("DOMContentLoaded", () => {
+  const hamburgerMenu = document.getElementById("hamburger-menu");
+  const navLinks = document.querySelector(".nav-links");
+  const navbar = document.getElementById("navbar");
+
+  if (hamburgerMenu && navLinks) {
+    hamburgerMenu.addEventListener("click", (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      // Always allow menu toggle on mobile
+      navLinks.classList.toggle("mobile-menu-open");
+      hamburgerMenu.classList.toggle("active");
+    });
+
+    // Close menu when clicking outside
+    document.addEventListener("click", (e) => {
+      if (!navbar.classList.contains("scrolled") && 
+          navLinks.classList.contains("mobile-menu-open") &&
+          !hamburgerMenu.contains(e.target) && 
+          !navLinks.contains(e.target)) {
+        navLinks.classList.remove("mobile-menu-open");
+        hamburgerMenu.classList.remove("active");
+      }
+    });
+
+    // Close menu when clicking on nav links
+    navLinks.addEventListener("click", (e) => {
+      if (e.target.tagName === "A" && navLinks.classList.contains("mobile-menu-open")) {
+        navLinks.classList.remove("mobile-menu-open");
+        hamburgerMenu.classList.remove("active");
+      }
+    });
+    
+    // Close menu on window resize to larger screen
+    window.addEventListener("resize", () => {
+      if (window.innerWidth > 768) {
+        navLinks.classList.remove("mobile-menu-open");
+        hamburgerMenu.classList.remove("active");
+      }
+    });
   }
 });
 
@@ -140,30 +191,114 @@ showSlide(current);
   const carousel = document.getElementById("carousel");
   const slides = document.querySelectorAll(".slide");
   const totalSlides = slides.length;
-  const slidesPerPage = 3;
   let index = 0;
   let autoSlideInterval;
+  
+  // Check if carousel elements exist
+  if (!carousel || slides.length === 0) {
+    console.log("Carousel elements not found");
+    return;
+  }
+  
+  // Ensure all images are loaded before initializing carousel
+  function ensureImagesLoaded() {
+    const images = carousel.querySelectorAll('img');
+    let loadedCount = 0;
+    
+    if (images.length === 0) {
+      initializeCarousel();
+      return;
+    }
+    
+    images.forEach(img => {
+      if (img.complete) {
+        loadedCount++;
+      } else {
+        img.onload = () => {
+          loadedCount++;
+          if (loadedCount === images.length) {
+            initializeCarousel();
+          }
+        };
+        img.onerror = () => {
+          loadedCount++;
+          if (loadedCount === images.length) {
+            initializeCarousel();
+          }
+        };
+      }
+    });
+    
+    if (loadedCount === images.length) {
+      initializeCarousel();
+    }
+  }
+  
+  // Function to get slides per page based on screen size
+  function getSlidesPerPage() {
+    if (window.innerWidth <= 480) {
+      return 1; // Mobile: 1 slide
+    } else if (window.innerWidth <= 768) {
+      return 2; // Tablet: 2 slides
+    } else {
+      return 3; // Desktop: 3 slides
+    }
+  }
 
   function showSlide(i) {
-    index = (i + totalSlides) % totalSlides;
-    const shift = index * (100 / slidesPerPage);
+    const slidesPerPage = getSlidesPerPage();
+    index = Math.max(0, Math.min(i, totalSlides - slidesPerPage));
+    
+    // For mobile, ensure we don't go beyond available slides
+    if (slidesPerPage === 1) {
+      index = Math.max(0, Math.min(i, totalSlides - 1));
+    }
+    
+    const slideWidth = 100 / slidesPerPage;
+    const shift = index * slideWidth;
     carousel.style.transform = `translateX(-${shift}%)`;
+    
+    // Force repaint for mobile browsers
+    carousel.style.display = 'flex';
+    carousel.offsetHeight; // Trigger reflow
   }
 
   function nextSlide() {
-    if (index + slidesPerPage < totalSlides) {
-      index++;
+    const slidesPerPage = getSlidesPerPage();
+    if (slidesPerPage === 1) {
+      // Mobile: move one slide at a time
+      if (index < totalSlides - 1) {
+        index++;
+      } else {
+        index = 0; // Loop back to start
+      }
     } else {
-      index = 0;
+      // Tablet/Desktop: move by slidesPerPage
+      if (index + slidesPerPage < totalSlides) {
+        index++;
+      } else {
+        index = 0;
+      }
     }
     showSlide(index);
   }
 
   function prevSlide() {
-    if (index > 0) {
-      index--;
+    const slidesPerPage = getSlidesPerPage();
+    if (slidesPerPage === 1) {
+      // Mobile: move one slide at a time
+      if (index > 0) {
+        index--;
+      } else {
+        index = totalSlides - 1; // Go to last slide
+      }
     } else {
-      index = totalSlides - slidesPerPage;
+      // Tablet/Desktop: move by slidesPerPage
+      if (index > 0) {
+        index--;
+      } else {
+        index = Math.max(0, totalSlides - slidesPerPage);
+      }
     }
     showSlide(index);
   }
@@ -175,23 +310,53 @@ showSlide(current);
   function stopAutoSlide() {
     clearInterval(autoSlideInterval);
   }
-
-  // Setup
-  showSlide(0);
-  startAutoSlide();
-
-  document.getElementById("prevBtn").addEventListener("click", () => {
-    stopAutoSlide();
-    prevSlide();
-  });
-
-  document.getElementById("nextBtn").addEventListener("click", () => {
-    stopAutoSlide();
-    nextSlide();
-  });
-
-  document.querySelector(".carousel-container").addEventListener("mouseenter", stopAutoSlide);
-  document.querySelector(".carousel-container").addEventListener("mouseleave", startAutoSlide);
+  
+  // Handle window resize
+  function handleResize() {
+    // Reset index for new screen size
+    const slidesPerPage = getSlidesPerPage();
+    if (index >= totalSlides - slidesPerPage + 1) {
+      index = Math.max(0, totalSlides - slidesPerPage);
+    }
+    showSlide(index);
+  }
+  
+  function initializeCarousel() {
+    // Setup carousel after images are loaded
+    showSlide(0);
+    startAutoSlide();
+    
+    // Add event listeners
+    const prevBtn = document.getElementById("prevBtn");
+    const nextBtn = document.getElementById("nextBtn");
+    const carouselContainer = document.querySelector(".carousel-container");
+    
+    if (prevBtn) {
+      prevBtn.addEventListener("click", () => {
+        stopAutoSlide();
+        prevSlide();
+        setTimeout(startAutoSlide, 2000); // Restart auto-slide after 2 seconds
+      });
+    }
+    
+    if (nextBtn) {
+      nextBtn.addEventListener("click", () => {
+        stopAutoSlide();
+        nextSlide();
+        setTimeout(startAutoSlide, 2000); // Restart auto-slide after 2 seconds
+      });
+    }
+    
+    if (carouselContainer) {
+      carouselContainer.addEventListener("mouseenter", stopAutoSlide);
+      carouselContainer.addEventListener("mouseleave", startAutoSlide);
+    }
+  }
+  
+  window.addEventListener('resize', handleResize);
+  
+  // Initialize carousel with image loading check
+  ensureImagesLoaded();
 
   // ------------------- Diamond Quality Accordion Section ------------------- //
   const accordionItems = document.querySelectorAll('.accordion-item');
@@ -270,3 +435,16 @@ showSlide(current);
     }
   });
 });
+
+function setCarouselTrackWidth() {
+  const track = document.getElementById('carousel');
+  const slides = track ? track.querySelectorAll('.slide') : [];
+  if (window.innerWidth <= 768 && track && slides.length) {
+    track.style.width = (slides.length * window.innerWidth) + 'px';
+  } else if (track) {
+    track.style.width = '';
+  }
+}
+
+window.addEventListener('resize', setCarouselTrackWidth);
+document.addEventListener('DOMContentLoaded', setCarouselTrackWidth);
