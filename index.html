@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Emirates Gold</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+<header id="navbar" class="navbar">
+  <!-- Hamburger Menu for Mobile (Left Corner) -->
+  <button class="hamburger-menu" id="hamburger-menu">
+    <span class="hamburger-line"></span>
+    <span class="hamburger-line"></span>
+    <span class="hamburger-line"></span>
+  </button>
+  
+  <div class="logo">
+    <img src="/assets/logo.png" alt="Emirates Gold Logo" style="height:32px;vertical-align:middle;margin-right:8px;">
+    <span>EMIRATES GOLD</span>
+  </div>
+  
+  <nav>
+    <ul class="nav-links">
+      <li><a href="#">Home</a></li>
+      <li><a href="#">About</a></li>
+      <li><a href="#">Collections</a></li>
+      <li><a href="#">Manufacture</a></li>
+      <li><a href="#">Careers</a></li>
+      <li><a href="#">Contact Us</a></li>
+      <li class="mobile-contact-info">
+        <div class="phone-number">Phone<br>+91 487 297 0017</div>
+        <div class="email">Email<br>mail@emiratesgold.com</div>
+        <div class="follow-us">Follow Us on</div>
+      </li>
+    </ul>
+  </nav>
+  <a href="#" class="contact-btn">Contact Us</a>
+</header>
+
+<section class="video-slider">
+  <video id="video1" class="video-slide active" autoplay muted loop playsinline>
+    <source src="/assets/video 3.mp4" type="video/mp4"/>
+  </video>
+  <video id="video2" class="video-slide" autoplay muted loop playsinline>
+    <source src="/assets/video2.mp4" type="video/mp4"/>
+  </video>
+
+  <div class="hero-content">
+    <h1 id="slide-title">Join Emirates Gold at IIJS Premiere 2025</h1>
+    <p id="slide-subtitle">Bombay Exhibition Centre - Mumbai | 31<sup>st</sup> July - 4<sup>th</sup> August | Hall No: 2, Stall No: 2H.258C</p>
+  </div>
+
+  <div class="controls">
+    <button class="arrow" id="prev"><img src="/assets/arrow-left.svg" alt="Previous"/></button>
+    <button class="arrow" id="next"><img src="/assets/arrow-right.svg" alt="Next"/></button>
+    <button class="volume-btn" id="volume">
+      <img id="volume-icon" src="/assets/mute.svg" alt="Volume"/>
+    </button>
+  </div>
+</section>
+<section class="about-section">
+  <div class="about-container">
+    <div class="about-image">
+      <img src="/assets/ring.png" alt="Diamond Ring">
+    </div>
+    <div class="about-content">
+      <h2>
+        Discover the Brilliance and<br>
+        Radiance of Exquisite<br>
+        Diamonds with Emirates Gold
+      </h2>
+      <a href="#about" class="about-btn">
+        About Us
+        <span class="arrow">→</span>
+      </a>
+      <div class="stats">
+        <div class="stat">
+          <span class="number">14+</span>
+          <span class="label">Years of Excellence</span>
+        </div>
+        <div class="stat">
+          <span class="number">25K</span>
+          <span class="label">sq.ft Manufacturing setup</span>
+        </div>
+        <div class="stat">
+          <span class="number">300+</span>
+          <span class="label">Dedicated Team</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="collection-section">
+    <div class="left-content">
+      <h1>Discover Our<br>Latest Collections</h1>
+      <button>View Products →</button>
+    </div>
+    <div class="right-content">
+      <div class="product-slider">
+        <div class="product-item">
+          <img src="/assets/bangles.png" alt="Bangles">
+          <p>Bangles</p>
+        </div>
+        <div class="product-item">
+          <img src="/assets/Pendant.png" alt="Pendants">
+          <p>Pendants</p>
+        </div>
+        <div class="product-item">
+          <img src="/assets/earing.png" alt="Earrings">
+          <p>Earrings</p>
+        </div>
+        <div class="product-item">
+          <img src="/assets/Rings2.png" alt="Rings">
+          <p>Rings</p>
+        </div>
+        <div class="product-item">
+          <img src="/assets/chain.png" alt="Chains">
+          <p>Chains</p>
+        </div>
+        <div class="product-item">
+          <img src="/assets/neckless.webp" alt="Necklace">
+          <p>Necklace</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- /*step sections*/ -->
+
+  <div class="container">
+    <!-- Left Side -->
+    <div class="left-side">
+      <img src="/assets/daimond.png" alt="Jewellery" class="background-img">
+      <div class="overlay-content">
+        <h1>Diamond Jewellery<br>Manufacturing Process</h1>
+        <button class="discover-btn">Discover More</button>
+      </div>
+    </div>
+
+    <!-- Right Side -->
+    <div class="right-side">
+      <video id="processVideo" autoplay loop muted playsinline></video>
+
+      <div class="step-content">
+        <p id="stepNumber" class="step-number">Step 01</p>
+        <h2 id="stepTitle">Design Creation</h2>
+        <p id="stepDesc">
+          Our master designers craft a digital or hand-drawn concept, forming the base of each masterpiece.
+        </p>
+      </div>
+
+      <!-- Dots Navigation -->
+      <div class="dots">
+        <span class="dot active" data-step="0"></span>
+        <span class="dot" data-step="1"></span>
+        <span class="dot" data-step="2"></span>
+        <span class="dot" data-step="3"></span>
+        <span class="dot" data-step="4"></span>
+      </div>
+    </div>
+  </div>
+
+<!-- infrastructure-section -->
+ 
+
+  <section class="infrastructure-section">
+  <h2>Our Infrastructure Ensures Precision & Excellence<br>in Every Piece</h2>
+  <div class="carousel-wrapper">
+    <div class="arrow-buttons">
+      <button id="prevBtn">&#8592;</button>
+      <button id="nextBtn">&#8594;</button>
+    </div>
+
+    <div class="carousel-container">
+      <div id="carousel" class="carousel-track">
+        <div class="slide">
+          <img src="Infrastructure/1.webp" alt="Filing">
+          <p>FILING</p>
+        </div>
+        <div class="slide">
+          <img src="Infrastructure/2.png" alt="3D Designing">
+          <p>3D DESIGNING</p>
+        </div>
+        <div class="slide">
+          <img src="Infrastructure/3.png" alt="Master Dye Making">
+          <p>MASTER PIECE CLEANING DYE MAKING</p>
+        </div>
+        <div class="slide">
+          <img src="Infrastructure/4.webp" alt="Wax Cleaning">
+          <p>WAX CLEANING</p>
+        </div>
+        <div class="slide">
+          <img src="Infrastructure/4.webp" alt="Wax Cleaning">
+          <p>WAX CLEANING</p>
+        </div>
+        <div class="slide">
+          <img src="Infrastructure/5.webp" alt="Wax Cleaning">
+          <p>WAX CLEANING</p>
+        </div>
+        <div class="slide">
+          <img src="Infrastructure/6.webp" alt="Wax Cleaning">
+          <p>WAX CLEANING</p>
+        </div>
+        <div class="slide">
+          <img src="Infrastructure/7.webp" alt="Wax Cleaning">
+          <p>WAX CLEANING</p>
+        </div>
+        <div class="slide">
+          <img src="Infrastructure/8.webp" alt="Wax Cleaning">
+          <p>WAX CLEANING</p>
+        </div>
+        <div class="slide">
+          <img src="Infrastructure/9.webp" alt="Wax Cleaning">
+          <p>WAX CLEANING</p>
+        </div>
+     
+        <!-- Add more slides as needed -->
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Build Your Own Diamond Jewellery Section -->
+<section class="build-jewellery-section">
+  <div class="build-content">
+    <div class="build-text">
+      <h2>Build Your Own Diamond<br>Jewellery with Us</h2>
+      <p>Emirates Gold is one of the world's leading<br>Manufacturers, since 2010</p>
+      <button class="enquiry-btn">Enquiry</button>
+    </div>
+    <div class="build-image">
+      <img src="/assets/Clip-path-group.webp" alt="Diamond Ring">
+    </div>
+  </div>
+</section>
+
+<!-- Diamond Quality Guaranteed Section -->
+<section class="diamond-quality-section">
+  <div class="quality-container">
+    <div class="quality-layout">
+      <div class="quality-left">
+        <h2>Diamond Quality<br>Guaranteed</h2>
+        <p>The 4Cs of diamond quality—cut, colour, clarity, and carat weight—are the essential factors to consider when choosing a diamond. They all contribute to its exceptional beauty and value.</p>
+      </div>
+      
+      <div class="quality-right">
+        <div class="quality-accordion">
+          <div class="accordion-item active" data-item="1">
+            <div class="accordion-header">
+              <span class="number">01.</span>
+              <h3>CUT QUALITY</h3>
+              <span class="icon">×</span>
+            </div>
+            <div class="accordion-content">
+              <div class="content-wrapper">
+                <div class="content-image">
+                  <img src="/assets/Mask-Group-26015.jpg" alt="Cut Quality Diamond">
+                </div>
+                <div class="content-text">
+                  <p>The cut quality of a diamond is the most important factor in its brilliance and sparkle. A well-cut diamond reflects light more efficiently, making it brighter and more dazzling.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="accordion-item" data-item="2">
+            <div class="accordion-header">
+              <span class="number">02.</span>
+              <h3>COLOUR</h3>
+              <span class="icon">+</span>
+            </div>
+            <div class="accordion-content">
+              <div class="content-wrapper">
+                <div class="content-image">
+                  <img src="/assets/Colors-scaled.jpg" alt="Diamond Colour">
+                </div>
+                <div class="content-text">
+                  <p>Diamond colour refers to the presence or absence of colour in white diamonds. The less colour, the higher the grade and value of the diamond.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="accordion-item" data-item="3">
+            <div class="accordion-header">
+              <span class="number">03.</span>
+              <h3>CLARITY</h3>
+              <span class="icon">+</span>
+            </div>
+            <div class="accordion-content">
+              <div class="content-wrapper">
+                <div class="content-image">
+                  <img src="/assets/Clarity-scaled.jpg" alt="Diamond Clarity">
+                </div>
+                <div class="content-text">
+                  <p>Clarity measures the absence of inclusions and blemishes. Fewer, smaller inclusions mean higher clarity and greater value.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="accordion-item" data-item="4">
+            <div class="accordion-header">
+              <span class="number">04.</span>
+              <h3>CARAT WEIGHT</h3>
+              <span class="icon">+</span>
+            </div>
+            <div class="accordion-content">
+              <div class="content-wrapper">
+                <div class="content-image">
+                  <img src="/assets/Carot-scaled.jpg" alt="Diamond Carat Weight">
+                </div>
+                <div class="content-text">
+                  <p>Carat weight measures a diamond's apparent size. One carat equals 200 milligrams. Larger diamonds are more rare and valuable.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="learn-more-section">
+      <button class="learn-more-btn">Learn More</button>
+    </div>
+  </div>
+</section>
+
+<!-- Our Clients Section -->
+<section class="clients-section">
+  <div class="clients-container">
+    <h2>Our Clients</h2>
+    <div class="clients-grid">
+      <div class="client-logo">
+        <img src="/client/Joyalukkas.png" alt="Joyalukkas">
+      </div>
+      <div class="client-logo">
+        <img src="/client/Kalyan Jewellers.png" alt="Kalyan Jewellers">
+      </div>
+      <div class="client-logo">
+        <img src="/client/Bhima.png" alt="Bhima">
+      </div>
+      <div class="client-logo">
+        <img src="/client/Jos Alukkas.png" alt="Jos Alukkas">
+      </div>
+      <div class="client-logo">
+        <img src="/client/T.T.Devassy Jewellery.png" alt="T.T.Devassy Jewellery">
+      </div>
+      <div class="client-logo">
+        <img src="/client/Regal Jewellers.png" alt="Regal Jewellers">
+      </div>
+      <div class="client-logo">
+        <img src="/client/Josco Jewellers.png" alt="Josco Jewellers">
+      </div>
+      <div class="client-logo">
+        <img src="/client/Thangamayil.png" alt="Thangamayil">
+      </div>
+      <div class="client-logo">
+        <img src="/client/Francis Alukkas.png" alt="Francis Alukkas">
+      </div>
+      <div class="client-logo">
+        <img src="/client/Edimannickal.png" alt="Edimannickal">
+      </div>
+      <div class="client-logo">
+        <img src="/client/Kavitha.png" alt="Kavitha">
+      </div>
+      <div class="client-logo">
+        <img src="/client/AGD.png" alt="AGD">
+      </div>
+      <div class="client-logo">
+        <img src="/client/Chungath.png" alt="Chungath">
+      </div>
+      <div class="client-logo">
+        <img src="/client/Ms Gold.png" alt="Ms Gold">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Client Testimonials Section -->
+<section class="testimonials-section">
+  <div class="testimonials-container">
+    <h2>Client Testimonials</h2>
+    
+    <div class="testimonials-layout">
+      <!-- Left Client Photo -->
+      <div class="testimonial-client-left">
+        <div class="client-image">
+          <img src="/assets/Manojkumar C.png" alt="Manojkumar C">
+          <div class="play-button">
+            <svg width="20" height="24" viewBox="0 0 20 24" fill="none">
+              <path d="M0 24V0L20 12L0 24Z" fill="white"/>
+            </svg>
+          </div>
+        </div>
+        <div class="client-details">
+          <p class="company-name">Thangamayil Jewellery</p>
+          <h3 class="person-name">Manojkumar C</h3>
+          <p class="person-title">AGM - Diamonds</p>
+        </div>
+      </div>
+      
+      <!-- Center Testimonial Content -->
+      <div class="testimonial-center">
+        <div class="quote-icon">
+          <svg width="60" height="45" viewBox="0 0 40 30" fill="none">
+            <path d="M0 30V18.75C0 8.39844 6.25 0.78125 16.25 0L17.5 3.90625C11.5625 5.15625 8.75 8.67188 8.75 12.8125V15H17.5V30H0ZM22.5 30V18.75C22.5 8.39844 28.75 0.78125 38.75 0L40 3.90625C34.0625 5.15625 31.25 8.67188 31.25 12.8125V15H40V30H22.5Z" fill="#C4C4C4"/>
+          </svg>
+        </div>
+        <div class="testimonial-content">
+          <p>Emirates Gold has consistently exceeded our expectations in every possible way. Their exquisite collection not only stands out for its exceptional quality but also for its innovative and captivating design..... <span class="read-more">Read More</span></p>
+        </div>
+        <div class="testimonial-attribution">
+          <p class="company-name">Jos Alukkas</p>
+          <h3 class="person-name">Mathew Varghese</h3>
+          <p class="person-title">Regional Sales Manager</p>
+        </div>
+      </div>
+      
+      <!-- Right Client Photo -->
+      <div class="testimonial-client-right">
+        <div class="client-image">
+          <img src="/assets/Dr. T M Thomas Isaac.png" alt="Dr. T M Thomas Isaac">
+          <div class="play-button">
+            <svg width="20" height="24" viewBox="0 0 20 24" fill="none">
+              <path d="M0 24V0L20 12L0 24Z" fill="white"/>
+            </svg>
+          </div>
+        </div>
+        <div class="client-details">
+          <h3 class="person-name">Dr. T M Thomas Isaac</h3>
+          <p class="person-title">Former Finance Minister of Kerala</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Be a Part of Our Team Section -->
+<section class="careers-section">
+  <div class="careers-container">
+    <div class="careers-content">
+      <div class="careers-text">
+        <h2>Be a Part of<br>Our Team</h2>
+        <p>Join our team and help us create exquisite<br>jewellery that our customers love.</p>
+        <button class="careers-btn">View Careers <span class="arrow">→</span></button>
+      </div>
+      <div class="careers-image">
+        <img src="/assets/Mask-Group-26011-1.png" alt="Jewellery Craftsman at work">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Testimonial Modal -->
+<div id="testimonialModal" class="modal">
+  <div class="modal-content">
+    <span class="close-btn">&times;</span>
+    <div class="modal-quote-icon">
+      <svg width="60" height="45" viewBox="0 0 40 30" fill="none">
+        <path d="M0 30V18.75C0 8.39844 6.25 0.78125 16.25 0L17.5 3.90625C11.5625 5.15625 8.75 8.67188 8.75 12.8125V15H17.5V30H0ZM22.5 30V18.75C22.5 8.39844 28.75 0.78125 38.75 0L40 3.90625C34.0625 5.15625 31.25 8.67188 31.25 12.8125V15H40V30H22.5Z" fill="#C4C4C4"/>
+      </svg>
+    </div>
+    <div class="modal-text">
+      <p>Emirates Gold has consistently exceeded our expectations in every possible way. Their exquisite collection not only stands out for its exceptional quality but also for its innovative and captivating design. Each piece tells a unique story, showcasing the artistry and craftsmanship that goes into creating them. Since we began our partnership with Emirates Gold, we have witnessed a remarkable and significant uptick in customer satisfaction. Our clients have expressed their delight with the stunning jewelry, and many have returned for additional purchases, further solidifying our belief in the value of this collaboration. The positive feedback we receive reinforces our decision to work with such a reputable brand, and we look forward to continuing this fruitful relationship.</p>
+    </div>
+    <div class="modal-attribution">
+      <p class="modal-company">Jos Alukkas</p>
+      <h3 class="modal-person">Mathew Varghese</h3>
+      <p class="modal-position">Regional Sales Manager</p>
+    </div>
+  </div>
+</div>
+
+<!-- Footer Section -->
+<footer class="footer">
+  <div class="footer-container">
+    <div class="footer-content">
+      <!-- Quick Link Column -->
+      <div class="footer-column">
+        <h3>Quick Link</h3>
+        <ul>
+          <li><a href="#">Home</a></li>
+          <li><a href="#">Blog</a></li>
+          <li><a href="#">Manufacture</a></li>
+          <li><a href="#">Careers</a></li>
+        </ul>
+      </div>
+      
+      <!-- About Us Column -->
+      <div class="footer-column">
+        <h3>About Us</h3>
+        <ul>
+          <li><a href="#">Company</a></li>
+          <li><a href="#">Customisation</a></li>
+          <li><a href="#">Our Clients</a></li>
+          <li><a href="#">Team</a></li>
+        </ul>
+      </div>
+      
+      <!-- Collections Column -->
+      <div class="footer-column">
+        <h3>Collections</h3>
+        <ul>
+          <li><a href="#">Necklaces</a></li>
+          <li><a href="#">Pendants</a></li>
+          <li><a href="#">Rings</a></li>
+          <li><a href="#">Bangles</a></li>
+        </ul>
+      </div>
+      
+      <!-- Support Column -->
+      <div class="footer-column">
+        <h3>Support</h3>
+        <div class="contact-info">
+          <p>Contact Us</p>
+          <p>Phone: +91 487 297 0017</p>
+          <p>Email: mail@emiratesgold.com</p>
+        </div>
+        <div class="social-icons">
+          <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+          <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+          <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Footer Bottom -->
+    <div class="footer-bottom">
+      <div class="footer-bottom-left">
+        <p>&copy; 2025  All Rights Reserved</p>
+        <p>Designed By Webandcrafts</p>
+      </div>
+      <div class="footer-bottom-right">
+        <a href="#">Terms & Conditions</a>
+        <span>+</span>
+        <a href="#">Privacy Policy</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+  
+<script src="script.js"></script>
+</body>
+</html>
